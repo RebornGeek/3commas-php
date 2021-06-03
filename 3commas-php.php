@@ -1,15 +1,29 @@
 <?php
 /*
- *
+ * 3Commas.io API PHP wrapper class
  */
 
 class threeCommasApi {
     public function __construct() {
-        $this->apiKey = ''; // Enter apiKey here
-        $this->secretKey = ''; // Enter secretKey here
+        $this->credentials['api_key'] = 'vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A'; // Enter apiKey here
+        $this->credentials['secret'] = 'NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j'; // Enter secretKey here
+        $this->credentials['type'] = 'binance'; // Enter type here
+        $this->credentials['name'] = 'binance_account'; // Enter name here
     }
 
-    private function requestJson() {
-        
+    private function requestJson($userRequestData = []) {
+        $requestData = array_merge($this->credentials, $userRequestData);
+
+        if(!empty($userRequestData)) {
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $requestData);
+            curl_setopt($curl, CURLOPT_URL, 'https://api.3commas.io/public/api');
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            $output = curl_exec($curl);
+            curl_close($curl);
+            return $output;
+        }
+
+        return FALSE;
     }
 }
