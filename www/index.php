@@ -1,9 +1,8 @@
 <?php
 /*
- * Example usage of ThreeCommasApi class
+ * Example usage of the ThreeCommasApi class
  */
 
-error_reporting(E_ALL);
 require_once('ThreeCommasApi.php');
-$threeCommasApi = new ThreeCommasApi(); // Initialize the class
-var_dump($threeCommasApi->requestJson()); // Request json
+$threeCommasApi = new ThreeCommasApi();
+var_dump($threeCommasApi->botsStrategyList());
