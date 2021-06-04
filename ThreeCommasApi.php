@@ -3,7 +3,7 @@
  * 3Commas.io API PHP wrapper class
  */
 
-class threeCommasApi {
+class ThreeCommasApi {
     public function __construct() {
         $this->credentials['api_key'] = 'vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A'; // Enter apiKey here
         $this->credentials['secret'] = 'NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j'; // Enter secretKey here
@@ -11,7 +11,7 @@ class threeCommasApi {
         $this->credentials['name'] = 'binance_account'; // Enter name here
     }
 
-    private function requestJson($userRequestData = []) {
+    public function requestJson($userRequestData = []) {
         $requestData = array_merge($this->credentials, $userRequestData);
 
         if(!empty($userRequestData)) {
