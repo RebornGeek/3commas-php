@@ -5,4 +5,4 @@
 
 require_once('ThreeCommasApi.php');
 $threeCommasApi = new ThreeCommasApi(); // Initialize the class
-$threeCommasApi->requestJson(); // Request json
+var_dump($threeCommasApi->requestJson()); // Request json
