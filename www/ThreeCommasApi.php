@@ -14,17 +14,17 @@ class ThreeCommasApi {
     public function requestJson($userRequestData = []) {
         $requestData = array_merge($this->credentials, $userRequestData);
 
-        if(!empty($userRequestData)) {
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $requestData);
-            curl_setopt($curl, CURLOPT_URL, 'https://api.3commas.io/public/api');
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_VERBOSE, TRUE);
-            $output = curl_exec($curl);
-            curl_close($curl);
-            return $output;
+        $ch = curl_init('https://api.3commas.io/public/api/ver1/ping');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $requestData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_VERBOSE, TRUE);
+        $output = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            $output = curl_error($ch);
         }
 
-        return FALSE;
+        curl_close($ch);
+        return $output;
     }
 }

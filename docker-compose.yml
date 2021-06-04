@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  web:
+    container_name: hardy-web
+    image: reborngeek/lamp:latest
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - ./:/home/thehardylawfirm.com/
+      - ./apache/sites-available/:/etc/apache2/sites-available/
+      - ./apache/sites-available/:/etc/apache2/sites-enabled/
+      - ./apache/ssl/:/etc/apache2/ssl/
+    ports:
+      - "80:80"
+      - "443:443"
+    stdin_open: true
+    tty: true
+
+  mysql:
+    container_name: hardy-mysql
+    image: mysql:5.6
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+      - dbdata:/var/lib/mysql/
+    ports:
+      - "3306:3306"
+    command: --max_allowed_packet=1073741824
+
+volumes:
+  dbdata:
