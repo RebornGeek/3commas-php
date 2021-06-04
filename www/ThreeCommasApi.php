@@ -19,7 +19,7 @@ class ThreeCommasApi {
             curl_setopt($curl, CURLOPT_POSTFIELDS, $requestData);
             curl_setopt($curl, CURLOPT_URL, 'https://api.3commas.io/public/api');
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_VERBOSE, true);
+            curl_setopt($curl, CURLOPT_VERBOSE, TRUE);
             $output = curl_exec($curl);
             curl_close($curl);
             return $output;
